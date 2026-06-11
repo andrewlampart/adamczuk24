@@ -8,11 +8,18 @@ Design: minimalistyczny swiss/grid — biel, czerń, cienkie linie, akcent petro
 ## Struktura
 
 ```
-index.html       — strona główna (one-page)
-css/style.css    — style
-js/main.js       — menu mobilne, liczniki, parallax hero, rok w stopce
-img/             — (do utworzenia) zdjęcia po podmianie placeholderów
+index.html             — strona główna (one-page)
+css/style.css          — style
+js/main.js             — menu mobilne, liczniki, parallax hero, rok w stopce
+img/aleksander.webp    — zdjęcie do sekcji „O mnie" (generowane z photo.jpg)
+img/og-cover.png       — grafika do udostępniania (Open Graph, 1200x630)
+photo.jpg              — źródłowe zdjęcie (nie jest linkowane na stronie)
+tools/prepare-images.py — kompresja zdjęcia + generowanie grafiki OG
+robots.txt, sitemap.xml — pliki dla wyszukiwarek
 ```
+
+Podmiana zdjęcia: nadpisz `photo.jpg` i uruchom `python tools/prepare-images.py`
+(wymaga Pillow: `pip install pillow`).
 
 Hero ma kinetyczne wejście (wersy H1 z masek, rysujące się hairline'y,
 petrolowy finał na ramie liczników) i subtelny parallax H1 za kursorem.
@@ -47,8 +54,9 @@ Strona jest opublikowana na GitHub Pages:
 - [x] **Hero — statystyki**: 5 lat / 114+ wydarzeń / 9000+ przeszkolonych (animowane liczniki —
       wartości edytuje się w `data-target` i `data-suffix` w `index.html`)
 - [ ] **O mnie**: 2–3 zdania o doświadczeniu (ZRM / SOR / zabezpieczenia) — oznaczone `[MIEJSCE NA...]`
-- [x] **O mnie — zdjęcie**: `photo.jpg` (żeby podmienić, wystarczy nadpisać plik;
-      obecne zdjęcie wygląda na robocze — do weryfikacji przed publikacją)
+- [x] **O mnie — zdjęcie**: `img/aleksander.webp` (podmiana: nadpisz `photo.jpg`
+      i uruchom `python tools/prepare-images.py`; obecne zdjęcie wygląda na
+      robocze — do weryfikacji przed publikacją)
 - [x] **Wykształcenie**: licencjat 2019–2022, magister 2022–2024
 - [ ] **Certyfikaty**: 6 wierszy `[Kurs ...] [Organizator] · [rok]` — wpisać prawdziwe
 - [ ] **Usługi — BHP**: potwierdzić zakres szkoleń BHP (uprawnienia do szkoleń okresowych)
@@ -58,7 +66,11 @@ Strona jest opublikowana na GitHub Pages:
 - [ ] **FAQ**: czas wyceny `[24/48 h]`, wyprzedzenie rezerwacji `[2–4 tygodnie]`
 - [ ] **Kontakt — dostępność**: czas odpowiedzi `[X h]`
 - [ ] **Stopka**: `[NAZWA DZIAŁALNOŚCI]`, `[NIP]`, `[REGON]` (z CEIDG)
-- [ ] **OG-tagi**: po publikacji odkomentować i uzupełnić `og:url` + `og:image`
+- [x] **OG-tagi**: `og:url`, `og:image` (img/og-cover.png) i twitter:card ustawione
+- [ ] **Google Search Console**: zweryfikować własność (najprościej: metoda „prefiks
+      adresu URL" + plik HTML, albo rekord TXT w DNS OVH) i zgłosić `sitemap.xml`
+- [ ] **Profil Google Business**: założyć wizytówkę (usługa lokalna — duży wpływ
+      na widoczność w Mapach i wynikach lokalnych)
 
 ## Gdyby kiedyś wrócił formularz
 

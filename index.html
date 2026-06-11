@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aleksander Adamczuk — Ratownik Medyczny | Zabezpieczenie imprez, zabezpieczenia wodne, szkolenia</title>
-  <meta name="description" content="Profesjonalne zabezpieczenie medyczne imprez, zabezpieczenia wodne kąpielisk i wydarzeń, szkolenia z pierwszej pomocy oraz usługi BHP. Trójmiasto i województwo pomorskie. Tel. 794 706 332.">
+  <title>Zabezpieczenie medyczne imprez Trójmiasto — Aleksander Adamczuk</title>
+  <meta name="description" content="Zabezpieczenie medyczne imprez, zawodów i kąpielisk — Trójmiasto i pomorskie. Szkolenia z pierwszej pomocy i BHP dla firm. Bezpłatna wycena: 794 706 332.">
   <meta name="author" content="Aleksander Adamczuk">
 
   <!-- Open Graph -->
@@ -13,10 +13,11 @@
   <meta property="og:title" content="Aleksander Adamczuk — Ratownik Medyczny">
   <meta property="og:description" content="Zabezpieczenie medyczne imprez, zabezpieczenia wodne, szkolenia z pierwszej pomocy i usługi BHP. Trójmiasto i pomorskie.">
   <meta property="og:url" content="https://adamczuk24.pl/">
+  <meta property="og:image" content="https://adamczuk24.pl/img/og-cover.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://adamczuk24.pl/">
-  <!-- TODO: dodać grafikę OG (1200x630 px), np. img/og-cover.jpg:
-  <meta property="og:image" content="https://adamczuk24.pl/img/og-cover.jpg">
-  -->
 
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2315181C'/%3E%3Ctext x='32' y='45' font-family='Arial, sans-serif' font-size='38' font-weight='700' fill='%23fff' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
 
@@ -33,12 +34,57 @@
   {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
+    "@id": "https://adamczuk24.pl/#firma",
     "name": "Aleksander Adamczuk — Ratownik Medyczny",
+    "url": "https://adamczuk24.pl/",
+    "image": "https://adamczuk24.pl/img/og-cover.png",
     "description": "Zabezpieczenie medyczne imprez, zabezpieczenia wodne, szkolenia z pierwszej pomocy, usługi BHP.",
     "telephone": "+48794706332",
     "email": "aleksander.adamczuk.00@gmail.com",
-    "areaServed": "Trójmiasto i województwo pomorskie",
-    "knowsLanguage": "pl"
+    "areaServed": ["Gdańsk", "Gdynia", "Sopot", "województwo pomorskie"],
+    "knowsLanguage": "pl",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Usługi",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Zabezpieczenie medyczne imprez" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Zabezpieczenia wodne" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Szkolenia z pierwszej pomocy" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Usługi BHP i zdrowie środowiskowe" } }
+      ]
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Kiedy impreza wymaga zabezpieczenia medycznego zgodnie z prawem?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Obowiązek dotyczy imprez masowych w rozumieniu ustawy z 20 marca 2009 r. o bezpieczeństwie imprez masowych — co do zasady od 1000 osób na terenie otwartym (lub od 500 osób w hali przy imprezie artystyczno-rozrywkowej i od 300 w hali przy imprezie sportowej). Mniejsze wydarzenia nie mają takiego obowiązku, ale organizator wciąż odpowiada za bezpieczeństwo uczestników — dlatego warto je zabezpieczyć."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ilu ratowników potrzeba na imprezę?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Dla imprez masowych minimalną obsadę (patrole ratownicze, zespoły wyjazdowe, punkty pomocy medycznej) określa rozporządzenie Ministra Zdrowia w sprawie minimalnych wymagań dotyczących zabezpieczenia pod względem medycznym imprezy masowej — zależy ona od planowanej liczby uczestników. Pomagam ją policzyć i przygotować plan zabezpieczenia do dokumentacji."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Czy szkolenia kończą się certyfikatem?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tak — każdy uczestnik otrzymuje imienne zaświadczenie ukończenia szkolenia, a firma komplet dokumentów dla swojej dokumentacji wewnętrznej (np. BHP)."
+        }
+      }
+    ]
   }
   </script>
 </head>
@@ -192,7 +238,7 @@
 
       <div class="about">
         <div class="about__media">
-          <img class="about__photo" src="photo.jpg" alt="Aleksander Adamczuk — ratownik medyczny" width="1536" height="2048" loading="lazy">
+          <img class="about__photo" src="img/aleksander.webp" alt="Aleksander Adamczuk — ratownik medyczny" width="760" height="1013" loading="lazy">
         </div>
 
         <div class="about__content">

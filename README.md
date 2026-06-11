@@ -27,12 +27,14 @@ z Google Fonts, więc pełny wygląd wymaga internetu (offline działa fallback 
 
 Strona jest opublikowana na GitHub Pages:
 
-- **Adres:** https://andrewlampart.github.io/adamczuk24/
+- **Adres:** https://adamczuk24.pl/ (zapasowo: https://andrewlampart.github.io/adamczuk24/)
 - **Repozytorium:** https://github.com/andrewlampart/adamczuk24
 - Deploy automatyczny: każdy `git push` na branch `main` publikuje zmiany
   (zwykle w ciągu 1–2 minut).
-- Własna domena (np. wykupiona dla klienta): **Settings → Pages → Custom domain**,
-  potem zaktualizować `og:url` i `canonical` w `index.html`.
+- Domena adamczuk24.pl: rejestracja w OVH, strefa DNS wskazuje na GitHub Pages
+  (4× rekord A `185.199.108-111.153` + `CNAME www → andrewlampart.github.io.`).
+  Plik `CNAME` w repo utrzymuje przypięcie domeny — nie usuwać go.
+- Po weryfikacji DNS w Settings → Pages włączyć **Enforce HTTPS**.
 
 ## Placeholdery do uzupełnienia (checklist)
 

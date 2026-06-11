@@ -23,15 +23,16 @@ kontakt wyłącznie przez bezpośrednie linki `tel:` i `mailto:`.
 Wystarczy otworzyć `index.html` w przeglądarce (dwuklik). Czcionki ładują się
 z Google Fonts, więc pełny wygląd wymaga internetu (offline działa fallback systemowy).
 
-## Publikacja na GitHub Pages
+## Publikacja
 
-1. Utwórz repozytorium na GitHub i wypchnij pliki (`git init`, `git add .`,
-   `git commit`, `git push`) — pliki w katalogu głównym, bez podkatalogu.
-2. W repozytorium: **Settings → Pages → Source: Deploy from a branch**,
-   branch `main`, folder `/ (root)`.
-3. Strona będzie dostępna pod `https://UZYTKOWNIK.github.io/NAZWA-REPO/`.
-4. Po publikacji odkomentuj i uzupełnij w `index.html` tagi `og:url` i `og:image`.
-5. (Opcjonalnie) własna domena: Settings → Pages → Custom domain.
+Strona jest opublikowana na GitHub Pages:
+
+- **Adres:** https://andrewlampart.github.io/adamczuk24/
+- **Repozytorium:** https://github.com/andrewlampart/adamczuk24
+- Deploy automatyczny: każdy `git push` na branch `main` publikuje zmiany
+  (zwykle w ciągu 1–2 minut).
+- Własna domena (np. wykupiona dla klienta): **Settings → Pages → Custom domain**,
+  potem zaktualizować `og:url` i `canonical` w `index.html`.
 
 ## Placeholdery do uzupełnienia (checklist)
 

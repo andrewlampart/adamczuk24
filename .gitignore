@@ -1,0 +1,6 @@
+# lokalna konfiguracja narzędzi
+.claude/
+
+# śmieci systemowe
+Thumbs.db
+.DS_Store

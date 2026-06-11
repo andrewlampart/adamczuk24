@@ -10,9 +10,15 @@ Design: minimalistyczny swiss/grid — biel, czerń, cienkie linie, akcent petro
 ```
 index.html       — strona główna (one-page)
 css/style.css    — style
-js/main.js       — menu mobilne, rok w stopce
+js/main.js       — menu mobilne, liczniki, parallax hero, rok w stopce
 img/             — (do utworzenia) zdjęcia po podmianie placeholderów
 ```
+
+Hero ma kinetyczne wejście (wersy H1 z masek, rysujące się hairline'y,
+petrolowy finał na ramie liczników) i subtelny parallax H1 za kursorem.
+Tempo choreografii reguluje się `animation-delay` w sekcji
+„kinetyczne wejście hero" w `style.css`. Przy `prefers-reduced-motion`
+i bez JS strona od razu pokazuje stan końcowy.
 
 Strona nie zbiera żadnych danych i nie używa cookies (informacja w stopce) —
 dlatego nie ma osobnej polityki prywatności. Nie ma też formularza kontaktowego:

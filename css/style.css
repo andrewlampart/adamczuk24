@@ -260,10 +260,22 @@ select:focus-visible, textarea:focus-visible, summary:focus-visible {
   display: flex;
   gap: 18px;
   align-items: baseline;
-  border-top: 1px solid var(--line);
+  position: relative;
   padding-block: 20px;
 }
-.hero__facts li:last-child { border-bottom: 1px solid var(--line); }
+/* linie faktów jako pseudoelementy — przy wejściu kreślą się od lewej (sekcja animacji niżej) */
+.hero__facts li::before,
+.hero__facts li:last-child::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--line);
+  transform-origin: 0 50%;
+}
+.hero__facts li:last-child::after { top: auto; bottom: 0; }
 .hero__facts span {
   font-family: var(--font-head);
   font-weight: 500;
@@ -276,9 +288,21 @@ select:focus-visible, textarea:focus-visible, summary:focus-visible {
 .hero__stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  position: relative;
 }
+/* ramy pasa liczników jako pseudoelementy — kreślą się na końcu choreografii */
+.hero__stats::before,
+.hero__stats::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--line);
+  transform-origin: 0 50%;
+}
+.hero__stats::before { top: 0; }
+.hero__stats::after { bottom: 0; }
 .hero__stats li {
   display: grid;
   gap: 2px;
@@ -294,6 +318,66 @@ select:focus-visible, textarea:focus-visible, summary:focus-visible {
   color: var(--ink);
 }
 .hero__stats span { color: var(--muted); font-size: 0.85rem; }
+
+/* ---------- kinetyczne wejście hero ----------
+   Stany ukryte żyją wyłącznie w keyframes (fill-mode: both):
+   bez JS (brak klasy .js na <html>) oraz przy prefers-reduced-motion
+   (globalny kill-switch na górze pliku) treść jest widoczna od razu. */
+
+.hero h1 .line {
+  display: block;
+  overflow: hidden;
+  overflow: clip;
+  /* zapas na wydłużenia liter (j, y, ą, ó) przy line-height 1.05 */
+  padding-block: 0.08em;
+  margin-block: -0.08em;
+}
+.hero h1 .line__inner { display: inline-block; }
+
+.js .hero h1 .line__inner { animation: hero-line-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.js .hero h1 .line:nth-child(1) .line__inner { animation-delay: 0.10s; }
+.js .hero h1 .line:nth-child(2) .line__inner { animation-delay: 0.24s; }
+.js .hero h1 .line:nth-child(3) .line__inner { animation-delay: 0.38s; }
+
+.js .hero__lead { animation: hero-fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.50s both; }
+.js .hero__cta { animation: hero-fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.62s both; }
+
+.js .hero__facts li::before,
+.js .hero__facts li:last-child::after { animation: hero-line-draw 0.9s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.js .hero__facts li:nth-child(1)::before { animation-delay: 0.34s; }
+.js .hero__facts li:nth-child(2)::before { animation-delay: 0.46s; }
+.js .hero__facts li:nth-child(3)::before { animation-delay: 0.58s; }
+.js .hero__facts li:last-child::after { animation-delay: 0.70s; }
+
+.js .hero__facts li > * { animation: hero-fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.js .hero__facts li:nth-child(1) > * { animation-delay: 0.50s; }
+.js .hero__facts li:nth-child(2) > * { animation-delay: 0.62s; }
+.js .hero__facts li:nth-child(3) > * { animation-delay: 0.74s; }
+
+.js .hero__stats::before { animation: hero-line-draw 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.55s both; }
+/* finał choreografii: dolna rama kreśli się w akcencie i wygasa do hairline */
+.js .hero__stats::after { animation: hero-line-finale 2.4s cubic-bezier(0.16, 1, 0.3, 1) 0.68s both; }
+
+@keyframes hero-line-in { from { transform: translateY(115%); } }
+@keyframes hero-fade-up { from { opacity: 0; transform: translateY(14px); } }
+@keyframes hero-line-draw { from { transform: scaleX(0); } }
+@keyframes hero-line-finale {
+  0% { transform: scaleX(0); background: var(--accent); }
+  45% { transform: scaleX(1); background: var(--accent); }
+  100% { transform: scaleX(1); background: var(--line); }
+}
+
+/* parallax wersów H1 za kursorem (tylko desktop) — transform na masce,
+   wejście animuje wnętrze maski, więc obie warstwy się nie gryzą */
+@media (hover: hover) and (pointer: fine) {
+  .hero h1 .line {
+    transform: translateX(calc(var(--mx, 0) * var(--depth, 0px)));
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .hero h1 .line:nth-child(1) { --depth: 8px; }
+  .hero h1 .line:nth-child(2) { --depth: 14px; }
+  .hero h1 .line:nth-child(3) { --depth: 20px; }
+}
 
 /* ---------- sekcje ---------- */
 .section { padding-block: 112px 0; }

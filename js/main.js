@@ -22,7 +22,8 @@ if (navToggle && nav) {
 // W HTML stoją docelowe wartości (działa bez JS); skrypt zeruje je przed
 // pierwszym malowaniem i odlicza w górę, gdy pas statystyk wjedzie w viewport.
 const statsBar = document.querySelector('.hero__stats');
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const motionMq = window.matchMedia('(prefers-reduced-motion: reduce)');
+const reduceMotion = motionMq.matches;
 
 if (statsBar && 'IntersectionObserver' in window && !reduceMotion) {
   const counters = statsBar.querySelectorAll('strong[data-target]');
@@ -56,11 +57,54 @@ if (statsBar && 'IntersectionObserver' in window && !reduceMotion) {
 
   const observer = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) {
-      counters.forEach((el, i) => setTimeout(() => animate(el), i * STAGGER));
+      // tuż po załadowaniu strony liczniki czekają, aż rama pasa skończy się kreślić;
+      // przy późniejszym doscrollowaniu startują bez zwłoki
+      const holdFirst = performance.now() < 3000 ? 650 : 0;
+      counters.forEach((el, i) => setTimeout(() => animate(el), holdFirst + i * STAGGER));
       observer.disconnect();
     }
   }, { threshold: 0.4 });
   observer.observe(statsBar);
+}
+
+// ===== Parallax wersów H1 za kursorem (desktop, tylko gdy hero na ekranie) =====
+const heroContent = document.querySelector('.hero__content');
+const heroSection = document.querySelector('.hero');
+const pointerMq = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+if (heroContent && heroSection && pointerMq.matches && 'IntersectionObserver' in window) {
+  let mx = 0;
+  let raf = null;
+  const apply = () => {
+    raf = null;
+    heroContent.style.setProperty('--mx', mx.toFixed(4)); // jeden zapis stylu na klatkę
+  };
+  const onMove = (e) => {
+    mx = e.clientX / window.innerWidth - 0.5;
+    if (raf === null) raf = requestAnimationFrame(apply);
+  };
+
+  let bound = false;
+  const bind = () => {
+    if (!bound) { window.addEventListener('pointermove', onMove, { passive: true }); bound = true; }
+  };
+  const unbind = () => {
+    if (bound) { window.removeEventListener('pointermove', onMove); bound = false; }
+    heroContent.style.setProperty('--mx', '0');
+  };
+
+  // nasłuch działa wyłącznie, gdy hero jest w viewporcie
+  const heroIo = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting && !motionMq.matches) bind(); else unbind();
+    });
+  });
+  heroIo.observe(heroSection);
+
+  // użytkownik może włączyć reduced-motion w trakcie sesji — gasimy parallax od razu
+  if (motionMq.addEventListener) {
+    motionMq.addEventListener('change', () => { if (motionMq.matches) unbind(); });
+  }
 }
 
 // ===== Rok w stopce =====
